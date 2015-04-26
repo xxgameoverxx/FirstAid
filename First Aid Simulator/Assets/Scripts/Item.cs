@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
+using System.Xml;
 using System.Collections;
 
-public class Item : MonoBehaviour {
+public class Item
+{
+    public Sprite visual;
+    public string Name;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public Item()
+    {}
+
+    public Item(XmlNode node)
+    {
+        Name = node.Attributes["name"].Value;
+        Debug.Log("Item " + Name + " is created");
+    }
 }

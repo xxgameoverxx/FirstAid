@@ -1,0 +1,24 @@
+<Root>
+  <Treatments>
+    <Treatment name="water" visual="water"/>
+    <Treatment name="oinment" visual="oinment"/>
+    <Treatment name="bandage" visual="bandage"/>
+    <Treatment name="clean" visual="clean"/>
+  </Treatments>
+  <Injuries>
+    <Injury name="burn" id="0" visual="burn">
+      <Treatment name="water" id="0"/>
+      <Treatment name="oinment" id="1"/>
+      <Treatment name="bandage" id="2"/>
+    </Injury>
+    <Injury name="cut" id="1" visual="cut">
+      <Treatment name="clean" id="0"/>
+      <Treatment name="bandage" id="1"/>
+    </Injury>
+  </Injuries>
+  <Slots>
+    <Slot name="Torso" id="0" pos="0,0">
+      <Injury name="burn"/>
+    </Slot>
+  </Slots>
+</Root>
