@@ -24,6 +24,7 @@ public class Injury
         }
         else
         {
+            treatment = new List<Item>();
             foreach (XmlNode childNode in node.ChildNodes)
             {
                 string treatmentName = childNode.Attributes["name"].Value;
