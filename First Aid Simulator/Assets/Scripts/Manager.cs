@@ -8,7 +8,7 @@ public static class Manager
 {
 
     public static Dictionary<string, Injury> injuries;
-    public static List<Slot> slots;
+    public static Dictionary<string, Slot> slots;
     public static Dictionary<string, Item> items;
 
     public static void ReadXML(string name)
@@ -47,10 +47,10 @@ public static class Manager
 
     private static void ReadSlots(XmlNode node)
     {
-        slots = new List<Slot>();
+        slots = new Dictionary<string,Slot>();
         foreach (XmlNode childNode in node.ChildNodes)
         {
-            slots.Add(new Slot(childNode));
+            slots.Add(childNode.Attributes["name"].Value, new Slot(childNode));
         }
     }
 
