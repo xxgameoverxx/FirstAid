@@ -15,8 +15,8 @@ public class Slot
     public Slot(XmlNode node)
     {
         Name = node.Attributes["name"].Value;
-        position = XmlReader.StringToVector2(node.Attributes["pos"].Value);
-        if (XmlReader.injuries == null)
+        position = Manager.StringToVector2(node.Attributes["pos"].Value);
+        if (Manager.injuries == null)
         {
             Debug.LogError("injuries list is empty! Check xml file for 'Injury' nodes!");
         }
@@ -26,8 +26,8 @@ public class Slot
             foreach (XmlNode childNode in node.ChildNodes)
             {
                 string injuryName = childNode.Attributes["name"].Value;
-                if (XmlReader.injuries.ContainsKey(injuryName))
-                    possibleInjuries.Add(XmlReader.injuries[injuryName]);
+                if (Manager.injuries.ContainsKey(injuryName))
+                    possibleInjuries.Add(Manager.injuries[injuryName]);
                 else
                     Debug.LogError("No such injury: " + injuryName + ". Injuries dictionary may be empty.");
             }

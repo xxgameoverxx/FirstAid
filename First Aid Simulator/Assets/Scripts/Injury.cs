@@ -7,18 +7,23 @@ public class Injury
 {
     public List<Item> treatment;
     public List<Item> appliedTreatment;
+    public string Name;
     public int Id;
     Sprite visual;
     Slot pos;
-    string Name;
 
     public Injury()
-    { }
+    {
+        treatment = new List<Item>();
+        appliedTreatment = new List<Item>();
+    }
 
     public Injury(XmlNode node)
     {
+        treatment = new List<Item>();
+        appliedTreatment = new List<Item>();
         Name = node.Attributes["name"].Value;
-        if (XmlReader.items == null)
+        if (Manager.items == null)
         {
             Debug.LogError("Items is null!");
         }
@@ -28,9 +33,9 @@ public class Injury
             foreach (XmlNode childNode in node.ChildNodes)
             {
                 string treatmentName = childNode.Attributes["name"].Value;
-                if (XmlReader.items.ContainsKey(treatmentName))
+                if (Manager.items.ContainsKey(treatmentName))
                 {
-                    treatment.Add(XmlReader.items[treatmentName]);
+                    treatment.Add(Manager.items[treatmentName]);
                 }
                 else
                 {
