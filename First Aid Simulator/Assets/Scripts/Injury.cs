@@ -11,6 +11,7 @@ public class Injury
     public int Id;
     public Sprite visual;
     public Slot pos;
+    public string key;
 
     public Injury()
     {
@@ -44,7 +45,6 @@ public class Injury
             }
         }
         visual = Resources.Load<Sprite>("Images/" + node.Attributes["visual"].Value);
-        Debug.Log("Visual of " + Name + " is set to " + node.Attributes["visual"].Value + " : " + Resources.Load<Sprite>("Images/" + node.Attributes["visual"].Value));
     }
 
 }

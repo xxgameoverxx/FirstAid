@@ -6,7 +6,8 @@ using System.Collections.Generic;
 public class Slot
 {
     public string Name;
-    public Vector2 position;
+    public Vector2 pos;
+    public Vector3 rot;
     public List<Injury> possibleInjuries;
 
     public Slot()
@@ -15,7 +16,8 @@ public class Slot
     public Slot(XmlNode node)
     {
         Name = node.Attributes["name"].Value;
-        position = Manager.StringToVector2(node.Attributes["pos"].Value);
+        pos = Manager.StringToVector2(node.Attributes["pos"].Value);
+        rot = Manager.StringToVector3(node.Attributes["rot"].Value);
         if (Manager.injuries == null)
         {
             Debug.LogError("injuries list is empty! Check xml file for 'Injury' nodes!");
@@ -33,6 +35,6 @@ public class Slot
             }
         }
 
-        Debug.Log("Slot " + Name + " is created at " + position + " with " + possibleInjuries.Count + " possible injuries.");
+        Debug.Log("Slot " + Name + " is created at " + pos + " with " + possibleInjuries.Count + " possible injuries.");
     }
 }

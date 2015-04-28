@@ -15,6 +15,7 @@ public class InGameManager : MonoBehaviour
     Injury activeInjury;
     GameObject items;
     GameObject injuries;
+    GameObject human;
     string lastKey;
 
     void CreateItems()
@@ -33,17 +34,17 @@ public class InGameManager : MonoBehaviour
         }
     }
 
-    void GenerateInjuries()
-    {
-        activeInjuryDict = new Dictionary<string, Injury>();
-        int posy = 0;
-        foreach (Injury i in Manager.injuries.Values)
-        {
-            activeInjuryDict.Add(System.Convert.ToChar(posy + 110).ToString(), i);
-            posy++;
-        }
-        RefreshInjuries();
-    }
+    //void GenerateInjuries()
+    //{
+    //    //activeInjuryDict = new Dictionary<string, Injury>();
+    //    //int posy = 0;
+    //    //foreach (Injury i in Manager.injuries.Values)
+    //    //{
+    //    //    //activeInjuryDict.Add(System.Convert.ToChar(posy + 110).ToString(), i);
+    //    //    posy++;
+    //    //}
+    //    RefreshInjuries();
+    //}
 
     void RefreshInjuries()
     {
@@ -53,20 +54,43 @@ public class InGameManager : MonoBehaviour
             Destroy(buttons[i]);
         }
         buttons.Clear();
+    
+        if(activeInjuryDict == null)
+            activeInjuryDict = new Dictionary<string, Injury>();
+        else
+            activeInjuryDict.Clear();
 
-        foreach (KeyValuePair<string, Injury> keyVal in activeInjuryDict)
+        foreach(Slot s in Manager.slots.Values)
         {
-            if (keyVal.Value == null)
-                continue;
-            GameObject go = Instantiate(Resources.Load("Prefabs/Injury"), Vector3.zero, Quaternion.identity) as GameObject;
-            go.transform.SetParent(injuries.transform);
-            go.GetComponent<RectTransform>().localPosition = new Vector2(0, -40 * posy + 180);
-            Text text = go.GetComponentInChildren<Text>();
-            text.text = keyVal.Key + " - " + keyVal.Value.Name;
-            go.GetComponent<Image>().sprite = keyVal.Value.visual;
-            buttons.Add(go);
-            posy++;
+            foreach(Injury i in s.possibleInjuries)
+            {
+                GameObject go = Instantiate(Resources.Load("Prefabs/Injury"), Vector3.zero, Quaternion.identity) as GameObject;
+                go.transform.SetParent(human.transform);
+                RectTransform rt = go.GetComponent<RectTransform>();
+                rt.localPosition = s.pos;
+                rt.rotation = Quaternion.Euler(s.rot);
+                activeInjuryDict.Add(System.Convert.ToChar(posy + 110).ToString(), i);
+                Text text = go.GetComponentInChildren<Text>();
+                text.text = System.Convert.ToChar(posy + 110).ToString() + " - " + i.Name;
+                go.GetComponent<Image>().sprite = i.visual;
+                buttons.Add(go);
+                posy++;
+            }
         }
+
+        //foreach (KeyValuePair<string, Injury> keyVal in activeInjuryDict)
+        //{
+        //    if (keyVal.Value == null)
+        //        continue;
+        //    GameObject go = Instantiate(Resources.Load("Prefabs/Injury"), Vector3.zero, Quaternion.identity) as GameObject;
+        //    go.transform.SetParent(injuries.transform);
+        //    go.GetComponent<RectTransform>().localPosition = new Vector2(0, -40 * posy + 180);
+        //    Text text = go.GetComponentInChildren<Text>();
+        //    text.text = keyVal.Key + " - " + keyVal.Value.Name;
+        //    go.GetComponent<Image>().sprite = keyVal.Value.visual;
+        //    buttons.Add(go);
+        //    posy++;
+        //}
     }
 
 
@@ -76,8 +100,9 @@ public class InGameManager : MonoBehaviour
         buttons = new List<GameObject>();
         items = GameObject.FindGameObjectWithTag("Items");
         injuries = GameObject.FindGameObjectWithTag("Injuries");
+        human = GameObject.FindGameObjectWithTag("Human");
         CreateItems();
-        GenerateInjuries();
+        RefreshInjuries();
     }
 
     void Update()

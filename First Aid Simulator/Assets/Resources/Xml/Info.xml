@@ -17,7 +17,7 @@
     </Injury>
   </Injuries>
   <Slots>
-    <Slot name="Torso" id="0" pos="0,0">
+    <Slot name="Torso" id="0" pos="-100,0" rot="0,0,45">
       <Injury name="burn"/>
     </Slot>
   </Slots>

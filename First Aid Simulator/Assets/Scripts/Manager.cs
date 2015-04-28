@@ -67,4 +67,9 @@ public static class Manager
     {
         return new Vector2(float.Parse(s.Split(","[0])[0]), float.Parse(s.Split(","[0])[1]));
     }
+
+    public static Vector2 StringToVector3(string s)
+    {
+        return new Vector3(float.Parse(s.Split(","[0])[0]), float.Parse(s.Split(","[0])[1]), float.Parse(s.Split(","[0])[2]));
+    }
 }
