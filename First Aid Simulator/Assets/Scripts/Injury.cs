@@ -10,13 +10,24 @@ public class Injury
     public string Name;
     public int Id;
     public Sprite visual;
-    public Slot pos;
+    public Slot slot;
     public string key;
 
     public Injury()
     {
         treatment = new List<Item>();
         appliedTreatment = new List<Item>();
+    }
+
+    public Injury(Injury i)
+    {
+        treatment = i.treatment;
+        appliedTreatment = i.appliedTreatment;
+        Name = i.Name;
+        Id = i.Id;
+        visual = i.visual;
+        slot = i.slot;
+        key = i.key;
     }
 
     public Injury(XmlNode node)
@@ -45,6 +56,11 @@ public class Injury
             }
         }
         visual = Resources.Load<Sprite>("Images/" + node.Attributes["visual"].Value);
+    }
+
+    public void Reset()
+    {
+        appliedTreatment.Clear();
     }
 
 }

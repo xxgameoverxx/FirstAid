@@ -6,14 +6,16 @@ public class Report
 {
     public int point = 0;
     public string detailedReport;
+    public Injury injury;
 
 
     public Report()
     {
     }
 
-    public Report(Injury injury)
+    public Report(Injury _injury)
     {
+        this.injury = new Injury(_injury);
         for(int i = 0; i < injury.appliedTreatment.Count; i++)
         {
             if (injury.treatment.Count < i + 1)
@@ -42,17 +44,15 @@ public class Report
             }
         }
 
-        detailedReport = "Correct treatmen was: ";
-        foreach(Item i in injury.treatment)
-        {
-            detailedReport += ", " + i.Name;
-        }
-        detailedReport += "\nApplied treatment was: ";
+        //detailedReport = "Correct treatmen was: ";
+        //foreach(Item i in injury.treatment)
+        //{
+        //    detailedReport += ", " + i.Name;
+        //}
+        //detailedReport += "\nApplied treatment was: ";
         foreach(Item i in injury.appliedTreatment)
         {
-            detailedReport += ", " + i.Name;
+            detailedReport += " " + i.Name + "\n";
         }
-        Debug.LogWarning(detailedReport);
-        Debug.LogWarning("You get " + point + " points for this!");
     }
 }

@@ -19,6 +19,15 @@
   <Slots>
     <Slot name="Torso" id="0" pos="-100,0" rot="0,0,45">
       <Injury name="burn"/>
+      <Injury name="cut"/>
+    </Slot>
+    <Slot name="LeftArm" id="1" pos="-45,90" rot="0,0,30">
+      <Injury name="burn"/>
+      <Injury name="cut"/>
+    </Slot>
+    <Slot name="RightArm" id="1" pos="-45,-100" rot="0,0,-30">
+      <Injury name="burn"/>
+      <Injury name="cut"/>
     </Slot>
   </Slots>
 </Root>
