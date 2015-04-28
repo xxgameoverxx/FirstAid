@@ -6,12 +6,12 @@
     <Treatment name="clean" visual="clean"/>
   </Treatments>
   <Injuries>
-    <Injury name="burn" id="0" visual="burn">
+    <Injury name="burn" id="0" visual="blood3">
       <Treatment name="water" id="0"/>
       <Treatment name="oinment" id="1"/>
       <Treatment name="bandage" id="2"/>
     </Injury>
-    <Injury name="cut" id="1" visual="cut">
+    <Injury name="cut" id="1" visual="blood1">
       <Treatment name="clean" id="0"/>
       <Treatment name="bandage" id="1"/>
     </Injury>

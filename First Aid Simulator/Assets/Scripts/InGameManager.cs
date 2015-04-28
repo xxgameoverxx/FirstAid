@@ -23,7 +23,7 @@ public class InGameManager : MonoBehaviour
         int posy = 0;
         foreach (Item i in Manager.items.Values)
         {
-            GameObject go = Instantiate(Resources.Load("Prefabs/Button"), Vector3.zero, Quaternion.identity) as GameObject;
+            GameObject go = Instantiate(Resources.Load("Prefabs/Item"), Vector3.zero, Quaternion.identity) as GameObject;
             go.transform.SetParent(items.transform);
             go.GetComponent<RectTransform>().localPosition = new Vector2(0, -40 * posy + 180);
             Text text = go.GetComponentInChildren<Text>();
@@ -58,11 +58,12 @@ public class InGameManager : MonoBehaviour
         {
             if (keyVal.Value == null)
                 continue;
-            GameObject go = Instantiate(Resources.Load("Prefabs/Button"), Vector3.zero, Quaternion.identity) as GameObject;
+            GameObject go = Instantiate(Resources.Load("Prefabs/Injury"), Vector3.zero, Quaternion.identity) as GameObject;
             go.transform.SetParent(injuries.transform);
             go.GetComponent<RectTransform>().localPosition = new Vector2(0, -40 * posy + 180);
             Text text = go.GetComponentInChildren<Text>();
             text.text = keyVal.Key + " - " + keyVal.Value.Name;
+            go.GetComponent<Image>().sprite = keyVal.Value.visual;
             buttons.Add(go);
             posy++;
         }

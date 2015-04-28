@@ -9,8 +9,8 @@ public class Injury
     public List<Item> appliedTreatment;
     public string Name;
     public int Id;
-    Sprite visual;
-    Slot pos;
+    public Sprite visual;
+    public Slot pos;
 
     public Injury()
     {
@@ -43,6 +43,8 @@ public class Injury
                 }
             }
         }
+        visual = Resources.Load<Sprite>("Images/" + node.Attributes["visual"].Value);
+        Debug.Log("Visual of " + Name + " is set to " + node.Attributes["visual"].Value + " : " + Resources.Load<Sprite>("Images/" + node.Attributes["visual"].Value));
     }
 
 }
